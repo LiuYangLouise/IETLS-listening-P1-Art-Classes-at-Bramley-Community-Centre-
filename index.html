@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Reborn新生留学 · 内部进阶机经真题 · Art Classes Bramley</title>
+    <style>
+        /* ===== 完全恢复剑21 Test 2 视觉风格 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-soft: #f0f7f5;
+            --panel-white: #ffffff;
+            --primary-green: #0F6B6B;
+            --primary-light: #e0f0f0;
+            --border-light: #d4e2e2;
+            --text-dark: #1f3a3a;
+            --text-soft: #2a5f5f;
+            --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.05);
+            --answered-bg: #e0f2f0;
+            --correct-bg: #dcfce7;
+            --incorrect-bg: #fee2e2;
+            --timer-warning: #dc2626;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e8f2f2 0%, #d4e6e6 100%);
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text-dark);
+            padding: 24px 28px;
+            min-height: 100vh;
+        }
+
+        .master-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .reborn-header {
+            background: var(--panel-white);
+            border-radius: 32px;
+            padding: 18px 28px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            text-align: center;
+        }
+        .reborn-header h1 {
+            font-weight: 700;
+            font-size: 28px;
+            color: var(--primary-green);
+            letter-spacing: 1px;
+            margin: 0;
+        }
+        .reborn-header p {
+            font-size: 14px;
+            color: var(--text-soft);
+            margin-top: 6px;
+        }
+
+        .global-timer-area {
+            background: var(--panel-white);
+            border-radius: 60px;
+            padding: 8px 24px;
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            border: 1px solid var(--border-light);
+        }
+        .global-timer {
+            font-family: monospace;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-green);
+            letter-spacing: 1px;
+            background: var(--bg-soft);
+            padding: 4px 14px;
+            border-radius: 40px;
+            transition: color 0.1s;
+        }
+        .global-timer.warning {
+            color: var(--timer-warning);
+            animation: blinkRed 0.8s infinite;
+        }
+        @keyframes blinkRed {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; text-shadow: 0 0 6px #dc2626; }
+            100% { opacity: 1; }
+        }
+        .early-submit-all {
+            background: #c97e5a;
+            color: white;
+            border: none;
+            padding: 8px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .part-indicator {
+            background: var(--primary-light);
+            padding: 4px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: var(--primary-green);
+        }
+        .part-submit-btn {
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 6px 20px;
+            border-radius: 32px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin-top: 16px;
+        }
+        .part-submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .btn-sm {
+            background: var(--primary-light);
+            border: 1px solid var(--border-light);
+            padding: 6px 16px;
+            border-radius: 32px;
+            cursor: pointer;
+            color: var(--primary-green);
+        }
+
+        .group {
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 18px 22px;
+            margin: 24px 0;
+            background: var(--panel-white);
+        }
+        .group h4 {
+            color: var(--primary-green);
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+        }
+        .instructions {
+            background: var(--bg-soft);
+            padding: 10px 14px;
+            border-radius: 14px;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 4px 14px;
+            font-size: 0.95rem;
+            width: 100%;
+            max-width: 160px;
+            background: var(--bg-soft);
+            transition: border 0.2s;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            background: white;
+        }
+
+        .form-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+        .form-table th {
+            background: var(--primary-green);
+            color: white;
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+        }
+        .form-table th:first-child {
+            border-radius: 12px 0 0 0;
+        }
+        .form-table th:last-child {
+            border-radius: 0 12px 0 0;
+        }
+        .form-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--border-light);
+            vertical-align: top;
+            line-height: 1.9;
+        }
+        .form-table tr:last-child td {
+            border-bottom: none;
+        }
+        .form-table .course-title {
+            font-weight: 700;
+            color: var(--primary-green);
+            font-size: 1.05rem;
+        }
+        .form-table .sub-text {
+            color: var(--text-soft);
+            font-size: 0.92rem;
+        }
+        .form-table .q-input {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .form-table .q-label {
+            font-weight: 600;
+            color: var(--primary-green);
+        }
+
+        .cell-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        #toast {
+            position: fixed;
+            bottom: 90px;
+            right: 24px;
+            background: var(--primary-green);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 40px;
+            opacity: 0;
+            transition: 0.2s;
+            z-index: 1000;
+        }
+        #toast.show {
+            opacity: 1;
+        }
+        .disabled-input input {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        #notes {
+            position: fixed;
+            right: -420px;
+            top: 0;
+            bottom: 0;
+            width: 420px;
+            background: var(--bg-soft);
+            border-left: 1px solid var(--border-light);
+            transition: right 0.25s;
+            z-index: 99;
+            display: flex;
+            flex-direction: column;
+        }
+        body.notes-open #notes {
+            right: 0;
+        }
+        .side-panel-header {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: var(--panel-white);
+            border-bottom: 1px solid var(--border-light);
+        }
+        #notes-list {
+            overflow-y: auto;
+            padding: 12px;
+            flex: 1;
+        }
+        #toggle-notes-btn {
+            background: var(--bg-soft);
+            border: 1px solid var(--border-light);
+            border-radius: 30px;
+            padding: 6px 14px;
+            cursor: pointer;
+        }
+
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 24px;
+        }
+        .results-table th,
+        .results-table td {
+            border: 1px solid var(--border-light);
+            padding: 12px 16px;
+            text-align: left;
+        }
+        .results-table th {
+            background: var(--bg-soft);
+            font-weight: 600;
+        }
+        .result-correct {
+            color: #15803d;
+            font-weight: 600;
+            background: var(--correct-bg);
+        }
+        .result-incorrect {
+            color: #b91c1c;
+            font-weight: 600;
+            background: var(--incorrect-bg);
+        }
+
+        .part-switch-bar {
+            margin-top: 28px;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .part-btn {
+            background: var(--panel-white);
+            border: 1px solid var(--border-light);
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-weight: 700;
+            cursor: pointer;
+            color: var(--primary-green);
+        }
+        .part-btn.active {
+            background: var(--primary-green);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .form-table {
+                font-size: 0.85rem;
+            }
+            .form-table td,
+            .form-table th {
+                padding: 8px 10px;
+            }
+            input[type="text"] {
+                max-width: 100%;
+            }
+            .form-table,
+            .form-table tbody,
+            .form-table tr,
+            .form-table td,
+            .form-table th {
+                display: block;
+            }
+            .form-table tr {
+                border-bottom: 2px solid var(--border-light);
+                padding: 8px 0;
+            }
+            .form-table th {
+                display: none;
+            }
+            .form-table td {
+                border: none;
+                padding: 4px 8px;
+            }
+            .form-table td:first-child {
+                font-weight: 600;
+                color: var(--primary-green);
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="master-container">
+        <div class="reborn-header">
+            <h1>🎓 Reborn新生留学 · 内部进阶机经真题</h1>
+            <p>Art Classes at Bramley Community Centre · Questions 1-10</p>
+        </div>
+
+        <div class="global-timer-area">
+            <div><span class="part-indicator" id="currentPartLabel">Part 1</span></div>
+            <div class="global-timer" id="globalTimerDisplay">00:00</div>
+            <button id="globalEarlySubmitBtn" class="early-submit-all">Early Submit</button>
+            <button id="toggle-notes-btn" class="btn-sm">📝 Notes</button>
+        </div>
+
+        <div id="partContainer"></div>
+
+        <div class="part-switch-bar" id="partSwitchBar">
+            <button class="part-btn active" data-part="1">Part 1 · Art Classes</button>
+        </div>
+    </div>
+
+    <div id="notes"><div class="side-panel-header"><span>My Notes</span><button id="notes-close" style="background:none; border:none; font-size:24px; cursor:pointer;">&times;</button></div><div id="notes-list"></div></div>
+    <div id="toast">Saved</div>
+
+    <script>
+        // ================================================================
+        //  CORRECT ANSWERS
+        // ================================================================
+
+        const CORRECT_ANSWERS = {
+            1: 'brushes',
+            2: '285',
+            3: 'ramdhanie',
+            4: 'bowls',
+            5: 'shirt',
+            6: 'thursday',
+            7: 'library',
+            8: 'sandwich',
+            9: 'station',
+            10: '0217856361'
+        };
+
+        // ================================================================
+        //  CORE ENGINE
+        // ================================================================
+
+        let audioElement = null;
+        let partStatus = { submitted: false, finishedAudio: false };
+        let globalTimerSeconds = 0,
+            globalInterval = null,
+            scheduleTimeouts = [],
+            allPartsCompleted = false,
+            reviewTimeoutId = null,
+            examStarted = false;
+
+        let savedAnswers = {};
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            clearTimeout(t._hide);
+            t._hide = setTimeout(() => t.classList.remove('show'), 1600);
+        }
+
+        function escapeHtml(s) { return String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' } [c])); }
+
+        function updateGlobalTimerDisplay() {
+            const el = document.getElementById('globalTimerDisplay');
+            const m = Math.floor(globalTimerSeconds / 60);
+            const s = globalTimerSeconds % 60;
+            el.textContent = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+            if (reviewTimeoutId && !allPartsCompleted) el.classList.add('warning');
+            else el.classList.remove('warning');
+        }
+
+        function stopCurrentAudio() {
+            if (audioElement) { audioElement.pause();
+                audioElement.currentTime = 0; }
+        }
+
+        function captureAllToSaved() {
+            for (let i = 1; i <= 10; i++) {
+                const inp = document.getElementById(`fill_${i}`);
+                savedAnswers[`q${i}`] = inp ? inp.value.trim() : '';
+            }
+        }
+
+        function restoreToCurrent() {
+            for (let i = 1; i <= 10; i++) {
+                const inp = document.getElementById(`fill_${i}`);
+                if (inp) inp.value = savedAnswers[`q${i}`] || '';
+            }
+        }
+
+        function attachInputCapture() {
+            document.querySelectorAll('input[type="text"]').forEach(inp => {
+                inp.removeEventListener('input', captureAllToSaved);
+                inp.addEventListener('input', captureAllToSaved);
+            });
+        }
+
+        function markPartSubmitted() {
+            if (partStatus.submitted) return;
+            partStatus.submitted = true;
+            stopCurrentAudio();
+            showToast('Part 1 submitted.');
+            document.getElementById('partContainer').classList.add('disabled-input');
+            checkAllPartsCompletion();
+        }
+
+        function markPartFinishedAudio() {
+            if (!partStatus.finishedAudio) {
+                partStatus.finishedAudio = true;
+                if (!partStatus.submitted) showToast('Audio finished.');
+                checkAllPartsCompletion();
+            }
+        }
+
+        function checkAllPartsCompletion() {
+            if (partStatus.submitted || partStatus.finishedAudio) {
+                if (!allPartsCompleted) {
+                    allPartsCompleted = true;
+                    if (globalInterval) clearInterval(globalInterval);
+                    scheduleTimeouts.forEach(t => clearTimeout(t));
+                    if (partStatus.submitted) finalizeResults();
+                    else startReviewCountdown();
+                }
+            }
+        }
+
+        function startReviewCountdown() {
+            globalTimerSeconds = 120;
+            updateGlobalTimerDisplay();
+            if (globalInterval) clearInterval(globalInterval);
+            globalInterval = setInterval(() => {
+                if (globalTimerSeconds <= 0) { clearInterval(globalInterval);
+                    finalizeResults(); } else { globalTimerSeconds--;
+                    updateGlobalTimerDisplay(); }
+            }, 1000);
+            reviewTimeoutId = setTimeout(() => {}, 121000);
+        }
+
+        function finalizeResults() {
+            captureAllToSaved();
+            if (reviewTimeoutId) clearTimeout(reviewTimeoutId);
+            if (globalInterval) clearInterval(globalInterval);
+            const container = document.getElementById('partContainer');
+            const resultsDiv = container.querySelector('.results-in-page');
+            if (resultsDiv) {
+                let table = '<h4>📊 Final Answer Review</h4><table class="results-table"><thead><th>Question</th><th>Your Answer</th><th>Correct Answer</th><th>Result</th></thead><tbody>';
+
+                for (let i = 1; i <= 10; i++) {
+                    const u = savedAnswers[`q${i}`] || '—';
+                    const c = CORRECT_ANSWERS[i] || '';
+                    const ok = u.toLowerCase() === c.toLowerCase();
+                    table +=
+                        `<tr><td style="font-weight:600">${i}</td><td>${escapeHtml(u)}</td><td>${escapeHtml(c)}</td><td class="${ok?'result-correct':'result-incorrect'}">${ok?'✔ Correct':'✖ Incorrect'}</td></tr>`;
+                }
+                table += '</tbody></table>';
+                resultsDiv.innerHTML = table;
+            }
+            showToast('Test completed. Final review displayed.');
+        }
+
+        function loadPart() {
+            const container = document.getElementById('partContainer');
+
+            let html = `
+            <div class="group">
+                <h4>Questions 1-10</h4>
+                <p class="instructions">Complete the form below. Write <b>ONE WORD AND/OR A NUMBER</b> for each answer.</p>
+
+                <table class="form-table">
+                    <thead>
+                        <tr>
+                            <th style="width:22%;">Class</th>
+                            <th style="width:26%;">Things to bring</th>
+                            <th style="width:30%;">Fees/Timetable</th>
+                            <th style="width:22%;">Tutor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- ===== 课程1: Movement and Light ===== -->
+                        <tr>
+                            <td>
+                                <div class="cell-content">
+                                    <span class="course-title">"Movement and Light"</span>
+                                    <span class="sub-text">Painting in the style of French impressionists</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell-content">
+                                    A set of <span class="q-label">1</span>
+                                    <span class="q-input"><input type="text" id="fill_1" placeholder="answer" autocomplete="off"></span>
+                                    is essential
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell-content">
+                                    The cost is $ <span class="q-label">2</span>
+                                    <span class="q-input"><input type="text" id="fill_2" placeholder="answer" autocomplete="off"></span>
+                                    for two terms
+                                    <span class="sub-text" style="margin-top:4px;">Monday evenings 6-8 p.m.</span>
+                                    <span class="sub-text">Room 15</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell-content">
+                                    A local artist called Steve <span class="q-label">3</span>
+                                    <span class="q-input"><input type="text" id="fill_3" placeholder="answer" autocomplete="off"></span>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- ===== 课程2: Clay Basics ===== -->
+                        <tr>
+                            <td>
+                                <div class="cell-content">
+                                    <span class="course-title">"Clay Basics"</span>
+                                    <span class="sub-text">Using the pottery wheel to make several <span class="q-label">4</span>
+                                    <span class="q-input"><input type="text" id="fill_4" placeholder="answer" autocomplete="off"></span></span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell-content">
+                                    An old <span class="q-label">5</span>
+                                    <span class="q-input"><input type="text" id="fill_5" placeholder="answer" autocomplete="off"></span>
+                                    would be a good idea
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell-content">
+                                    The cost is $180 per term
+                                    <span style="margin-top:4px;">Every <span class="q-label">6</span>
+                                    <span class="q-input"><input type="text" id="fill_6" placeholder="answer" autocomplete="off"></span>, 6:30-8:30 p.m.</span>
+                                    <span class="sub-text">Room 3</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell-content">
+                                    Theresa Clark - her work is displayed in the community centre.
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- ===== 课程3: Sketching Architecture ===== -->
+                        <tr>
+                            <td>
+                                <div class="cell-content">
+                                    <span class="course-title">"Sketching Architecture"</span>
+                                    <span class="sub-text">Drawing old buildings, starting with the <span class="q-label">7</span>
+                                    <span class="q-input"><input type="text" id="fill_7" placeholder="answer" autocomplete="off"></span></span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell-content">
+                                    People usually take a fold-up chair and a <span class="q-label">8</span>
+                                    <span class="q-input"><input type="text" id="fill_8" placeholder="answer" autocomplete="off"></span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell-content">
+                                    The cost is $160 per term
+                                    <span class="sub-text" style="margin-top:4px;">Fridays 11-1 p.m.</span>
+                                    Meet at the corner of Victoria Street and <span class="q-label">9</span>
+                                    <span class="q-input"><input type="text" id="fill_9" placeholder="answer" autocomplete="off"></span>
+                                    Road
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell-content">
+                                    Annie Lee - Annie's cell phone number: <span class="q-label">10</span>
+                                    <span class="q-input"><input type="text" id="fill_10" placeholder="answer" autocomplete="off"></span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="results-in-page"></div>
+            `;
+
+            container.innerHTML = html;
+            document.getElementById('currentPartLabel').innerText = 'Part 1 · Art Classes';
+
+            if (partStatus.submitted) container.classList.add('disabled-input');
+            else container.classList.remove('disabled-input');
+
+            restoreToCurrent();
+
+            const btn = document.createElement('button');
+            btn.textContent = 'Submit Part 1';
+            btn.className = 'part-submit-btn';
+            btn.onclick = () => {
+                if (!partStatus.submitted && !partStatus.finishedAudio) markPartSubmitted();
+                else showToast('Part 1 already completed');
+            };
+            const panel = container.querySelector('.group:last-child') || container;
+            panel.insertAdjacentElement('afterend', btn);
+
+            attachInputCapture();
+            captureAllToSaved();
+
+            setInterval(() => {
+                if (!partStatus.submitted) captureAllToSaved();
+            }, 400);
+        }
+
+        function startAudio() {
+            if (partStatus.submitted || partStatus.finishedAudio) return;
+            const DURATION = 400;
+            const AUDIO_FILE = "P1 Art Classes Bramley.mp3";
+            audioElement = new Audio(AUDIO_FILE);
+            audioElement.play().catch(() => {});
+            const timeoutId = setTimeout(() => {
+                if (audioElement && !partStatus.submitted) {
+                    audioElement.pause();
+                    markPartFinishedAudio();
+                }
+            }, DURATION * 1000);
+            scheduleTimeouts.push(timeoutId);
+        }
+
+        function earlySubmitAllHandler() {
+            if (!examStarted) { showToast('Test not started yet.'); return; }
+            if (confirm('Early submit? Test will end immediately.')) {
+                if (audioElement) { audioElement.pause();
+                    audioElement.currentTime = 0; }
+                if (!partStatus.submitted && !partStatus.finishedAudio) partStatus.submitted = true;
+                finalizeResults();
+            }
+        }
+
+        function startExam() {
+            if (examStarted) return;
+            examStarted = true;
+            document.getElementById('startOverlay')?.remove();
+            document.getElementById('globalEarlySubmitBtn').disabled = false;
+            loadPart();
+            startAudio();
+            globalInterval = setInterval(() => {
+                if (!allPartsCompleted && !reviewTimeoutId) globalTimerSeconds++;
+                updateGlobalTimerDisplay();
+            }, 1000);
+        }
+
+        function init() {
+            const overlay = document.createElement('div');
+            overlay.id = 'startOverlay';
+            overlay.style.cssText =
+                'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); backdrop-filter:blur(6px); z-index:1000; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:30px;';
+            overlay.innerHTML =
+                `<div style="background:var(--panel-white); padding:24px 48px; border-radius:60px; color:var(--primary-green); font-weight:500;">🎧 Click START to begin the listening test</div><button id="startExamBtn" style="background:var(--primary-green); color:white; font-size:2rem; padding:20px 50px; border-radius:60px; border:none; cursor:pointer;">▶ START TEST</button><div style="background:var(--panel-white); padding:16px 32px; border-radius:40px; font-size:0.85rem;">Duration: ~6min 40s | +2min review</div>`;
+            document.body.appendChild(overlay);
+            document.getElementById('startExamBtn').addEventListener('click', () => { overlay.remove();
+                startExam(); });
+
+            loadPart();
+            document.getElementById('globalEarlySubmitBtn').addEventListener('click', earlySubmitAllHandler);
+            document.getElementById('toggle-notes-btn').addEventListener('click', () => document.body.classList.toggle(
+                'notes-open'));
+            document.getElementById('notes-close').addEventListener('click', () => document.body.classList.remove(
+                'notes-open'));
+            document.getElementById('globalEarlySubmitBtn').disabled = true;
+        }
+        init();
+    </script>
+</body>
+</html>
